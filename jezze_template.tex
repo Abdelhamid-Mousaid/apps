@@ -1,0 +1,38 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Jezza de cours}} \\[1ex]
+    \textbf{Niveau :} {{ class_level }} \quad
+    \textbf{Cours :} {{ lesson_title }} \\[1ex]
+    \textbf{Compétences ciblées :} {{ competencies }}
+\end{center}
+
+\vspace{1em}
+
+\section*{Objectifs d'apprentissage}
+{{ objectifs }}
+
+\section*{Pré-requis}
+{{ prerequis }}
+
+\section*{Déroulement de la séance}
+\begin{itemize}[label=\textbullet]
+    \item Situation de départ : {{ situation_depart }}
+    \item Activité principale : {{ activite_principale }}
+    \item Synthèse : {{ synthese }}
+\end{itemize}
+
+\section*{Évaluation}
+{{ evaluation }}
+
+\end{document}
