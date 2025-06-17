@@ -24,8 +24,11 @@ with st.form("jezze_form"):
 if submit:
     st.success("⏳ Génération en cours...")
 
-    template_path = "jezze_template.tex"
-    with open(template_path, "r", encoding="utf-8") as file:
+    templates_dir = "templates"
+    filled_tex_path = os.path.join(templates_dir, "jezze_filled.tex")
+    pdf_path = os.path.join(templates_dir, "jezze_filled.pdf")
+
+    with open(os.path.join(templates_dir, "jezze_template.tex"), "r", encoding="utf-8") as file:
         template_content = file.read()
 
     template = Template(template_content)
@@ -42,15 +45,19 @@ if submit:
     }
 
     rendered_latex = template.render(context)
-    filled_tex_path = "jezze_filled.tex"
     with open(filled_tex_path, "w", encoding="utf-8") as f:
         f.write(rendered_latex)
 
-    # Compilation vers PDF (nécessite xelatex en local)
-    result = subprocess.run(["xelatex", "-interaction=nonstopmode", "-output-directory=.", filled_tex_path])
+    # Compilation vers PDF dans le dossier templates/
+    result = subprocess.run([
+        "xelatex",
+        "-interaction=nonstopmode",
+        f"-output-directory={templates_dir}",
+        filled_tex_path
+    ])
 
-    if result.returncode == 0 and os.path.exists("jezze_filled.pdf"):
-        with open("jezze_filled.pdf", "rb") as pdf_file:
+    if result.returncode == 0 and os.path.exists(pdf_path):
+        with open(pdf_path, "rb") as pdf_file:
             st.download_button("📥 Télécharger la jézzah PDF", pdf_file, file_name="jezze_filled.pdf")
     else:
         st.error("❌ Erreur lors de la génération du PDF. Vérifiez que xelatex est installé.")
