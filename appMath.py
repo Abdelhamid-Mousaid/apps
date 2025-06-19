@@ -18,7 +18,16 @@ st.sidebar.write("Files in directory:", os.listdir())
 st.sidebar.write("Files in templates:", os.listdir("templates") if os.path.exists("templates") else "No templates directory")
 
 with st.form("jezze_form"):
-    # ... [your existing form code] ...
+    class_level = st.selectbox("📚 Niveau", ["3APIC", "2APIC", "1APIC"])
+    lesson_title = st.text_input("📖 Titre du cours", "Identités remarquables")
+    competencies = st.text_area("🎯 Compétences ciblées", "Développer et factoriser des expressions algébriques")
+    objectifs = st.text_area("🎓 Objectifs d'apprentissage", "Maîtriser les identités remarquables")
+    prerequis = st.text_area("📌 Pré-requis", "Notions de puissance et de développement")
+    situation_depart = st.text_area("💡 Situation de départ", "Exemple concret d'aire")
+    activite_principale = st.text_area("🛠️ Activité principale", "Résolution d'exercices guidés")
+    synthese = st.text_area("📚 Synthèse", "Rappel des formules clés")
+    evaluation = st.text_area("📝 Évaluation", "Exercice individuel")
+    submit = st.form_submit_button("🚀 Générer la jézzah")
 
 if submit:
     st.success("⏳ Génération en cours...")
@@ -82,3 +91,4 @@ debug_info = f"""
     LaTeX Version: {subprocess.run(['xelatex', '--version'], capture_output=True, text=True).stdout}
     """
 st.sidebar.code(debug_info)
+

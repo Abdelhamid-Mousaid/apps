@@ -22,4 +22,4 @@ ENV PORT=8501
 EXPOSE $PORT
 
 # Use the PORT variable in the command
-CMD streamlit run appMath.py --server.port=$PORT --server.address=0.0.0.0
+CMD ["sh", "-c", "streamlit run appMath.py --server.port=${PORT} --server.address=0.0.0.0"]
