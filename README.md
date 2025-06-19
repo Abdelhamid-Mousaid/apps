@@ -1,14 +1,14 @@
 ---
-title: Math App
+title: Math Application
 emoji: ➗
 colorFrom: blue
 colorTo: purple
-sdk: gradio
-sdk_version: 4.13.0
-app_file: appMath.py
+sdk: docker
+sdk_version: auto
+app_file: appMath.py  # Make sure this matches your filename
 pinned: false
 ---
 
 # Math Application
 
-This Space runs a math application using Gradio. It includes LaTeX template functionality.
+This Space runs a math application using Docker. It includes LaTeX template functionality.
