@@ -12,4 +12,4 @@ license: mit
 
 # Math Application
 
-This Space runs a math application using Gradio. It includes LaTeX template functionality.
+This Space runs a math application using Docker. It includes LaTeX template functionality.
