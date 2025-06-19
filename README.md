@@ -3,10 +3,11 @@ title: Math App
 emoji: ➗
 colorFrom: blue
 colorTo: purple
-sdk: gradio
-sdk_version: 4.13.0
+sdk: docker
+sdk_version: auto
 app_file: appMath.py
 pinned: false
+license: mit
 ---
 
 # Math Application
