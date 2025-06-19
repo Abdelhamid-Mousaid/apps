@@ -1,25 +1,25 @@
-# Dockerfile
 FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies including xelatex
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    texlive-latex-base \
+    texlive-xetex \
     texlive-fonts-recommended \
+    texlive-latex-recommended \
     texlive-latex-extra \
+    texlive-fonts-extra \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy all files
 COPY . .
 
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose Streamlit port
-EXPOSE 8501
+# Use PORT environment variable (required by Hugging Face)
+ENV PORT=8501
+EXPOSE $PORT
 
-# Launch application
-CMD ["streamlit", "run", "appMath.py", "--server.port=8501", "--server.address=192.168.1.207"]
+# Use the PORT variable in the command
+CMD streamlit run appMath.py --server.port=$PORT --server.address=0.0.0.0
