@@ -4,6 +4,9 @@ import subprocess
 import os
 import sys
 
+if os.environ.get('HEALTH_CHECK'):
+    st.write("OK")
+    st.stop() 
 st.set_page_config(page_title="Générateur de Jézzah", layout="centered")
 
 st.title("🧠 Générateur de Jézzah pour Professeurs de Mathématiques")
@@ -71,3 +74,11 @@ if submit:
                 
     except Exception as e:
         st.error(f"❌ Une erreur est survenue: {str(e)}")
+debug_info = f"""
+    System Path: {sys.path}
+    Current Dir: {os.getcwd()}
+    Files: {os.listdir()}
+    Templates: {os.listdir('templates') if os.path.exists('templates') else 'Missing'}
+    LaTeX Version: {subprocess.run(['xelatex', '--version'], capture_output=True, text=True).stdout}
+    """
+st.sidebar.code(debug_info)

@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install system dependencies including xelatex
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     texlive-xetex \
@@ -17,7 +17,7 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Use PORT environment variable (required by Hugging Face)
+# Use PORT environment variable provided by Hugging Face
 ENV PORT=8501
 EXPOSE $PORT
 
